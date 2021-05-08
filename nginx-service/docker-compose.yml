@@ -1,0 +1,17 @@
+version: '2'
+services:
+  nginx:
+    image: nginx
+    container_name: dd-site
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./conf:/etc/nginx/conf.d:Z
+      - ./caches:/data-cache:Z
+      - ./www:/var/www/html/
+      - ./logs:/var/log/nginx/log
+    environment:
+      - TZ=Asia/Bangkok
+      - NGINX_PORT=80
+    restart: always
